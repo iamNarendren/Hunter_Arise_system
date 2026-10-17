@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b16">
+  <title>ARISE — Hunter System</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="page-glow" aria-hidden="true"></div>
+  <main class="dashboard">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="ARISE home">
+        <span class="brand-mark" aria-hidden="true">A</span>
+        <span>ARISE<span class="brand-subtitle">HUNTER SYSTEM</span></span>
+      </a>
+      <div class="topbar-status">
+        <span class="save-status" id="save-status" role="status" aria-live="polite">LOADING</span>
+        <span class="system-status"><span class="status-dot"></span> SYSTEM ONLINE</span>
+      </div>
+    </header>
+
+    <section class="welcome">
+      <div>
+        <p class="eyebrow">HUNTER INTERFACE <span class="eyebrow-line"></span></p>
+        <h1>Good day, <span>Hunter.</span></h1>
+        <p class="welcome-copy">Every quest is a step toward becoming stronger.</p>
+      </div>
+      <div class="date-chip"><span aria-hidden="true">✦</span> YOUR JOURNEY STARTS HERE</div>
+    </section>
+
+    <section class="profile-panel panel" aria-labelledby="profile-heading">
+      <div class="profile-main">
+        <div class="avatar" aria-hidden="true"><span>H</span><i></i></div>
+        <div class="profile-copy">
+          <p class="eyebrow">PLAYER PROFILE</p>
+          <h2 id="profile-heading">New Hunter</h2>
+          <div class="rank-line"><span class="rank-badge" id="rank-badge">E</span><span id="rank-label">E-RANK HUNTER</span><span class="rank-divider"></span><span id="level-label">LEVEL 1</span></div>
+        </div>
+      </div>
+      <div class="xp-section">
+        <div class="xp-labels">
+          <span>EXPERIENCE</span>
+          <span><strong id="xp-current">0</strong> <span class="muted">/ <span id="xp-next">100</span> XP · TOTAL <span id="xp-total">0</span></span></span>
+        </div>
+        <div class="xp-track" role="progressbar" aria-label="Experience toward next level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="xp-fill" id="xp-fill"></div>
+        </div>
+        <p class="xp-footnote" id="xp-footnote">100 XP to your next level</p>
+      </div>
+    </section>
+
+    <section class="stats-grid" aria-label="Hunter statistics">
+      <article class="stat-card panel">
+        <div class="stat-icon violet" aria-hidden="true">✦</div>
+        <p class="stat-label">DAILY STREAK</p>
+        <p class="stat-value"><span id="streak-count">0</span><span class="stat-unit" id="streak-unit"> days</span></p>
+        <p class="stat-note">Consecutive days with a completed quest</p>
+      </article>
+      <article class="stat-card panel">
+        <div class="stat-icon blue" aria-hidden="true">▤</div>
+        <p class="stat-label">TOTAL QUESTS</p>
+        <p class="stat-value" id="total-quests">0</p>
+        <p class="stat-note">Quests on your list</p>
+      </article>
+      <article class="stat-card panel">
+        <div class="stat-icon green" aria-hidden="true">✓</div>
+        <p class="stat-label">COMPLETED · LIFETIME</p>
+        <p class="stat-value" id="completed-quests">0</p>
+        <p class="stat-note">Every step counts</p>
+      </article>
+      <article class="stat-card panel">
+        <div class="stat-icon amber" aria-hidden="true">◷</div>
+        <p class="stat-label">COMPLETED TODAY</p>
+        <p class="stat-value" id="daily-completions">0</p>
+        <p class="stat-note">Quests completed today</p>
+      </article>
+      <article class="stat-card panel">
+        <div class="stat-icon amber" aria-hidden="true">⌛</div>
+        <p class="stat-label">IN PROGRESS</p>
+        <p class="stat-value" id="active-quests">0</p>
+        <p class="stat-note">Ready when you are</p>
+      </article>
+    </section>
+
+    <section class="quest-layout">
+      <div class="quest-list-panel panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">YOUR OBJECTIVES</p>
+            <h2>Quest board <span class="heading-count" id="quest-count">0</span></h2>
+          </div>
+          <span class="board-tag"><span class="status-dot"></span> ACTIVE</span>
+        </div>
+        <div class="quest-list" id="quest-list" aria-live="polite">
+          <div class="empty-state" id="empty-state">
+            <div class="empty-icon" aria-hidden="true">⌁</div>
+            <h3>No quests yet</h3>
+            <p>Create your first quest and begin your hunter journey.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="create-panel panel">
+        <div class="section-heading create-heading">
+          <div>
+            <p class="eyebrow">TAKE THE FIRST STEP</p>
+            <h2>Create a quest</h2>
+          </div>
+          <span class="plus-mark" aria-hidden="true">+</span>
+        </div>
+        <form id="quest-form">
+          <label for="quest-title">Quest title</label>
+          <input id="quest-title" name="title" type="text" maxlength="80" placeholder="e.g. Study for 30 minutes" required>
+
+          <label for="quest-category">Category</label>
+          <select id="quest-category" name="category" required>
+            <option value="" disabled selected>Select a category</option>
+            <option value="Study">Study</option>
+            <option value="Fitness">Fitness</option>
+            <option value="Personal">Personal</option>
+            <option value="Work">Work</option>
+            <option value="Other">Other</option>
+          </select>
+
+          <label for="quest-difficulty">Difficulty</label>
+          <select id="quest-difficulty" name="difficulty" required>
+            <option value="Easy">Easy · 10 XP</option>
+            <option value="Medium">Medium · 25 XP</option>
+            <option value="Hard">Hard · 50 XP</option>
+          </select>
+          <p class="form-hint">Harder quests reward more experience.</p>
+          <button class="primary-button" type="submit"><span aria-hidden="true">＋</span> Add quest</button>
+        </form>
+        <p class="form-feedback" id="form-feedback" role="status" aria-live="polite" hidden></p>
+      </aside>
+    </section>
+
+    <p class="action-feedback" id="action-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+    <footer class="footer"><span>ARISE SYSTEM <span class="footer-divider">/</span> MILESTONE 01</span><span>YOUR GROWTH IS YOURS TO CLAIM.</span></footer>
+  </main>
+</body>
+</html>
